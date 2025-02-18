@@ -1,18 +1,18 @@
-const productQuantity = document.getElementsByClassName('product__quantity-control')
+const productQuantityDec = document.getElementsByClassName('product__quantity-control_dec')
+const productQuantityInc = document.getElementsByClassName('product__quantity-control_inc')
 const addProduct = document.getElementsByClassName('product__add')
-let quantityCurrent = document.getElementsByClassName('product__quantity-value')
+const quantityCurrent = document.getElementsByClassName('product__quantity-value')
 
-// console.log(quantity)
+for (let i = 0; i < productQuantityInc.length; i++) {
+    productQuantityInc[i].addEventListener('click', () => {
+        quantityCurrent[i].textContent++;
+    })
 
-for (let i = 0; i < productQuantity.length; i++) {
-    productQuantity[i].addEventListener('click', function () {
-        if (productQuantity[i].classList.contains('product__quantity-control_dec') && quantity[i].nextElementSibling.innerText > 1) {
-            productQuantity[i].nextElementSibling.innerText--
-        } else {
-            productQuantity[i].previousElementSibling.innerText++
+    productQuantityDec[i].addEventListener('click', () => {
+        if (quantityCurrent[i].textContent > 0) {
+            quantityCurrent[i].textContent--;
         }
-        
-    });
+    })
 }
 
 const cart = document.querySelector('.cart__products')
@@ -26,7 +26,7 @@ for (let i = 0; i < addProduct.length; i++) {
             if (item.dataset.id === id) {                
                 let quantityNow = item.querySelector('.cart__product-count')
                 let total = +quantityNow.innerText
-                quantityNow.innerText = total + countFromProduct
+                quantityNow.innerText = Number(total) + Number(countFromProduct)
                 return false
             }                    
         }
