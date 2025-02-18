@@ -1,9 +1,11 @@
-let listTask = document.getElementById('tasks__list');
-let inputTask = document.getElementById('task__input');
-let addTask = document.getElementById('tasks__add');
+let listTask = document.getElementById('tasks__list')
+let inputTask = document.getElementById('task__input')
+let addTask = document.getElementById('tasks__add')
 
 
 function addNewTask(e) {
+    e.preventDefault()
+    inputTask.value = inputTask.value.trim()
     if (inputTask.value != '') {
         listTask.insertAdjacentHTML('afterBegin', 
             `<div class="task">
@@ -12,22 +14,18 @@ function addNewTask(e) {
                 </div>
                 <a href="#" class="task__remove">&times;</a>
             </div>`);
-        inputTask.value = '';
-        e.preventDefault();
+        inputTask.value = ''
+        e.preventDefault()
 
-        let remove = document.querySelector('.task__remove');
-        let task = document.querySelector('.task');
-    
+        let remove = document.querySelector('.task__remove')
+        let task = document.querySelector('.task')
         
         remove.addEventListener('click', function(e) {
-            e.preventDefault();
-            task.remove();
+            e.preventDefault()
+            task.remove()
         });
-
         return false;
-    } else {
-        e.preventDefault();
     } 
 }
 
-addTask.addEventListener('click', addNewTask);
+addTask.addEventListener('click', addNewTask)
